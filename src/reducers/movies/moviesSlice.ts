@@ -1,15 +1,17 @@
 import {createSlice} from '@reduxjs/toolkit';
 // import type {PayloadAction} from '@reduxjs/toolkit';
+import {IMovie} from '@interfaces/movieInterface';
+import {mockMovies} from '@__mocks__/movies';
 
 interface MoviesState {
   isLoading: boolean;
-  list: any[]; // todo: type here...
+  list: IMovie[]; // todo: type here...
   error: boolean;
 }
 
 const initialState: MoviesState = {
   isLoading: false,
-  list: [],
+  list: mockMovies,
   error: false,
 };
 

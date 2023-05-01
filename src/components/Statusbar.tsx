@@ -1,11 +1,14 @@
 import React from 'react';
 import {StatusBar as RNStatusBar} from 'react-native';
-import {useTheme} from 'react-native-paper';
+import {useTheme} from 'styled-components';
 
 export default function AppStatusBar() {
   const {colors} = useTheme();
 
   return (
-    <RNStatusBar backgroundColor={colors.background} barStyle="light-content" />
+    <RNStatusBar
+      backgroundColor={colors.neutral.black}
+      barStyle="light-content"
+    />
   );
 }

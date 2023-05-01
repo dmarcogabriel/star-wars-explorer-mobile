@@ -1,7 +1,14 @@
-import React from 'react';
+import styled, {css} from 'styled-components/native';
+import {Text} from 'react-native-paper';
 
-import {Text as RNText} from 'react-native';
-
-export default function Text() {
-  return <RNText>Hello World!</RNText>;
+interface IProps {
+  isBold?: boolean;
 }
+
+export default styled(Text)<IProps>`
+  ${({isBold}) =>
+    isBold &&
+    css`
+      font-weight: bold;
+    `};
+`;
