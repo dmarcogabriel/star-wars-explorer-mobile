@@ -11,6 +11,9 @@ export const Colors = {
     'gray-200': '#3b3b3b',
     black: '#211C20',
   },
+  feedback: {
+    danger: '#96031A',
+  },
 };
 
 export type IColors = typeof Colors;
