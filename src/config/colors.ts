@@ -13,6 +13,7 @@ export const Colors = {
   },
   feedback: {
     danger: '#96031A',
+    success: '#2FF924',
   },
 };
 
