@@ -6,6 +6,7 @@ interface IProps {
 }
 
 export default styled(Text)<IProps>`
+  color: ${({theme}) => theme.colors.neutral.black};
   ${({isBold}) =>
     isBold &&
     css`
