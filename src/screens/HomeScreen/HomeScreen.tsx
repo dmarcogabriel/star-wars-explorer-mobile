@@ -28,7 +28,7 @@ export default function HomeScreen() {
   return (
     <Container>
       <Title>Star Wars Explorer</Title>
-      <Subtitle>Select an order to watch!</Subtitle>
+      <Subtitle>Watch in the right order!</Subtitle>
       {isLoading && (
         <ActivityIndicator
           color={theme.colors.branding['brand-primary-main']}

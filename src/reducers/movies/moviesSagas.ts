@@ -1,5 +1,5 @@
 import {AxiosResponse} from 'axios';
-import {takeEvery, put, call} from 'redux-saga/effects';
+import {put, call, takeLatest} from 'redux-saga/effects';
 import api from '@config/api';
 import {IGetMoviesResponse} from '@interfaces/movieStoreInterface';
 import {getMovies, getMoviesSuccess, getMoviesFailure} from './moviesSlice';
@@ -19,5 +19,5 @@ function* loadMovies() {
 }
 
 export default function* watchAll() {
-  yield takeEvery(getMovies, loadMovies);
+  yield takeLatest(getMovies, loadMovies);
 }

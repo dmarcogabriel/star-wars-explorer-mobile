@@ -7,12 +7,14 @@ interface MoviesState {
   isLoading: boolean;
   list: IMovie[];
   error: boolean;
+  watched: string[];
 }
 
 const initialState: MoviesState = {
   isLoading: false,
   list: [],
   error: false,
+  watched: [],
 };
 
 export const moviesSlice = createSlice({
@@ -31,10 +33,17 @@ export const moviesSlice = createSlice({
       state.isLoading = false;
       state.error = true;
     },
+    setWatchedMovie(state, {payload}: PayloadAction<{movieUrl: string}>) {
+      if (state.watched.some(movieUrl => movieUrl === payload.movieUrl)) {
+        state.watched.filter(movieUrl => movieUrl === payload.movieUrl);
+      } else {
+        state.watched = [...state.watched, payload.movieUrl];
+      }
+    },
   },
 });
 
-export const {getMovies, getMoviesFailure, getMoviesSuccess} =
+export const {getMovies, getMoviesFailure, getMoviesSuccess, setWatchedMovie} =
   moviesSlice.actions;
 
 export default moviesSlice.reducer;
