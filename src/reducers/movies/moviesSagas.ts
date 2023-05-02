@@ -4,7 +4,7 @@ import api from '@config/api';
 import {IGetMoviesResponse} from '@interfaces/movieStoreInterface';
 import {getMovies, getMoviesSuccess, getMoviesFailure} from './moviesSlice';
 
-function* loadMovies() {
+export function* loadMovies() {
   const endpoint = 'films';
 
   try {
