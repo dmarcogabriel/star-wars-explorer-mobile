@@ -35,7 +35,9 @@ export const moviesSlice = createSlice({
     },
     setWatchedMovie(state, {payload}: PayloadAction<{movieUrl: string}>) {
       if (state.watched.some(movieUrl => movieUrl === payload.movieUrl)) {
-        state.watched.filter(movieUrl => movieUrl === payload.movieUrl);
+        state.watched = state.watched.filter(
+          movieUrl => movieUrl !== payload.movieUrl,
+        );
       } else {
         state.watched = [...state.watched, payload.movieUrl];
       }
