@@ -10,7 +10,7 @@ interface MoviesState {
   watched: string[];
 }
 
-const initialState: MoviesState = {
+export const initialState: MoviesState = {
   isLoading: false,
   list: [],
   error: false,
