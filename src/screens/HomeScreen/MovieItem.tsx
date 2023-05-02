@@ -20,7 +20,7 @@ const MovieItem = memo(({movie, wasWatched}: IProps) => {
   };
 
   return (
-    <Container>
+    <Container testID="movieItem">
       <InfoWrapper>
         <Text variant="labelLarge">{'Episode number: '}</Text>
         <Text variant="labelMedium" isBold>
@@ -39,6 +39,7 @@ const MovieItem = memo(({movie, wasWatched}: IProps) => {
         <InfoWrapper>
           <Text variant="labelSmall">{'Watched '}</Text>
           <Checkbox
+            testID="movieItemCheckbox"
             status={wasWatched ? 'checked' : 'unchecked'}
             onPress={handleWatchMovie}
             color={colors.feedback.success}

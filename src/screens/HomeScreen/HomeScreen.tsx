@@ -26,7 +26,7 @@ export default function HomeScreen() {
   const handleReload = () => dispatch(getMovies());
 
   return (
-    <Container>
+    <Container testID="homeScreen">
       <Title>Star Wars Explorer</Title>
       <Subtitle>Watch in the right order!</Subtitle>
       {isLoading && (
