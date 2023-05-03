@@ -18,7 +18,6 @@ export default function HomeScreen() {
   }, [dispatch]);
 
   const {list, isLoading, error} = useAppSelector(selectMovies);
-  console.log('LISTAAAAAAAAA ->: ', list.length);
 
   const sortedList = useMemo(() => {
     return [...list].sort((a, b) => a.episode_id - b.episode_id);
@@ -32,11 +31,12 @@ export default function HomeScreen() {
       <Subtitle>Watch in the right order!</Subtitle>
       {isLoading && (
         <ActivityIndicator
+          testID="homeScreenLoading"
           color={theme.colors.branding['brand-primary-main']}
         />
       )}
       <MovieList movies={sortedList} />
-      <Snackbar visible={error} onDismiss={() => {}}>
+      <Snackbar visible={error} onDismiss={() => {}} testID="errorMessage">
         <SnackbarContent>
           <SnackbarActionText>Something went wrong.</SnackbarActionText>
           <TouchableOpacity onPress={handleReload}>
