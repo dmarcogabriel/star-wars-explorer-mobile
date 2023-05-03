@@ -18,6 +18,7 @@ export default function HomeScreen() {
   }, [dispatch]);
 
   const {list, isLoading, error} = useAppSelector(selectMovies);
+  console.log('LISTAAAAAAAAA ->: ', list.length);
 
   const sortedList = useMemo(() => {
     return [...list].sort((a, b) => a.episode_id - b.episode_id);

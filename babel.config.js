@@ -15,6 +15,7 @@ module.exports = {
           '@__mocks__': './__mocks__',
           '@interfaces': './src/interfaces',
           '@providers': './src/providers',
+          '@helpers': './src/helpers',
         },
       },
     ],

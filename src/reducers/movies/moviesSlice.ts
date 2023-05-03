@@ -3,14 +3,14 @@ import type {PayloadAction} from '@reduxjs/toolkit';
 import {IMovie} from '@interfaces/movieInterface';
 import {IGetMoviesResponse} from '@interfaces/movieStoreInterface';
 
-interface MoviesState {
+export interface IMoviesState {
   isLoading: boolean;
   list: IMovie[];
   error: boolean;
   watched: string[];
 }
 
-export const initialState: MoviesState = {
+export const initialState: IMoviesState = {
   isLoading: false,
   list: [],
   error: false,
