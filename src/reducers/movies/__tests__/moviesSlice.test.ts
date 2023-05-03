@@ -39,4 +39,13 @@ describe('moviesSlice', () => {
       watched: ['movie 1'],
     });
   });
+
+  test('remove watched movie from list', () => {
+    const action = setWatchedMovie({movieUrl: 'movie 1'});
+    const state = {...initialState, watched: ['movie 1']};
+    expect(moviesReducer(state, action)).toEqual({
+      ...initialState,
+      watched: [],
+    });
+  });
 });
