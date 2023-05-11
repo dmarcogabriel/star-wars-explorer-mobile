@@ -4,6 +4,16 @@ import {renderWithTheme} from '@helpers/setupTestHelper';
 import HomeScreen from '@screens/HomeScreen';
 import {mockMovies} from '@__mocks__/movies';
 import {initialState} from '@reducers/movies/moviesSlice';
+import * as appDispatch from '@hooks/useAppDispatch';
+
+jest.mock('@hooks/useAppDispatch');
+
+let mockDispatch = jest.fn();
+beforeAll(() => {
+  jest.spyOn(appDispatch, 'useAppDispatch').mockReturnValue(mockDispatch);
+});
+
+afterEach(jest.clearAllMocks);
 
 describe('HomeScreen', () => {
   it('should render a list of sorted movies', () => {
@@ -42,5 +52,16 @@ describe('HomeScreen', () => {
 
     expect(queryByTestId('homeScreenLoading')).toBeFalsy();
     expect(getByText(/Something went wrong./)).toBeTruthy();
+
+    fireEvent.press(getByText(/Something went wrong./));
+
+    expect(mockDispatch).toHaveBeenNthCalledWith(1, {
+      payload: undefined,
+      type: 'movie/getMovies',
+    });
+    expect(mockDispatch).toHaveBeenNthCalledWith(2, {
+      payload: undefined,
+      type: 'movie/getWatchedMovies',
+    });
   });
 });
