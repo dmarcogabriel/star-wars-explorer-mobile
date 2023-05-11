@@ -23,7 +23,6 @@ export default function MoviesList({movies}: IProps) {
 
   return (
     <MoviesListContainer
-      testID="moviesList"
       data={movies}
       renderItem={renderItem}
       keyExtractor={movie => movie.url}
