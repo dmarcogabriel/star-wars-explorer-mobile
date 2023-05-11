@@ -23,7 +23,7 @@ export default function MovieItem({movie, wasWatched}: IProps) {
     <Container testID="movieItem">
       <InfoWrapper>
         <Text variant="labelLarge">{'Episode number: '}</Text>
-        <Text variant="labelMedium" isBold>
+        <Text variant="labelMedium" isBold testID="movieEpisodeNumber">
           {movie.episode_id}
         </Text>
       </InfoWrapper>
