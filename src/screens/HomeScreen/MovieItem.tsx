@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React from 'react';
 import styled, {useTheme} from 'styled-components/native';
 import {Card, Checkbox} from 'react-native-paper';
 import {IMovie} from '@interfaces/movieInterface';
@@ -11,7 +11,7 @@ interface IProps {
   wasWatched: boolean;
 }
 
-const MovieItem = memo(({movie, wasWatched}: IProps) => {
+export default function MovieItem({movie, wasWatched}: IProps) {
   const dispatch = useAppDispatch();
   const {colors} = useTheme();
 
@@ -49,7 +49,7 @@ const MovieItem = memo(({movie, wasWatched}: IProps) => {
       </InfoWrapper>
     </Container>
   );
-});
+}
 
 const Container = styled(Card)`
   padding: 16px;
@@ -62,5 +62,3 @@ const InfoWrapper = styled.View<{justifyContent?: string}>`
   align-items: center;
   justify-content: ${({justifyContent = 'flex-start'}) => justifyContent};
 `;
-
-export default MovieItem;

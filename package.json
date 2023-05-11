@@ -11,6 +11,7 @@
     "test:c": "jest --coverage"
   },
   "dependencies": {
+    "@react-native-async-storage/async-storage": "^1.18.1",
     "@reduxjs/toolkit": "^1.9.5",
     "@types/axios": "^0.14.0",
     "axios": "^1.4.0",

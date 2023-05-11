@@ -5,18 +5,19 @@ import {IMovie} from '@interfaces/movieInterface';
 import {useAppSelector} from '@hooks/useAppSelector';
 import {selectWatched} from '@reducers/movies/moviesSelectors';
 import MovieItem from './MovieItem';
+import {movieIsWatchedById} from '@helpers/movieSliceHelper';
 
 interface IProps {
   movies: IMovie[];
 }
 
 export default function MoviesList({movies}: IProps) {
-  const watched = useAppSelector(selectWatched);
+  const watchedMovies = useAppSelector(selectWatched);
 
-  const renderItem: ListRenderItem<IMovie> = ({item}) => (
+  const renderItem: ListRenderItem<IMovie> = ({item: movie}) => (
     <MovieItem
-      movie={item}
-      wasWatched={watched.some(movieUrl => movieUrl === item.url)}
+      movie={movie}
+      wasWatched={movieIsWatchedById(movie.url, watchedMovies)}
     />
   );
 

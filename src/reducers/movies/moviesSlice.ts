@@ -1,20 +1,24 @@
 import {createSlice} from '@reduxjs/toolkit';
 import type {PayloadAction} from '@reduxjs/toolkit';
 import {IMovie} from '@interfaces/movieInterface';
-import {IGetMoviesResponse} from '@interfaces/movieStoreInterface';
+import {
+  IGetMoviesResponse,
+  IGetWatchedMoviesPayload,
+} from '@interfaces/movieStoreInterface';
+import {movieIsWatchedById, filterMovieById} from '@helpers/movieSliceHelper';
 
 export interface IMoviesState {
   isLoading: boolean;
-  list: IMovie[];
-  error: boolean;
-  watched: string[];
+  movies: IMovie[];
+  hasError: boolean;
+  watchedMovies: string[];
 }
 
 export const initialState: IMoviesState = {
   isLoading: false,
-  list: [],
-  error: false,
-  watched: [],
+  movies: [],
+  hasError: false,
+  watchedMovies: [],
 };
 
 export const moviesSlice = createSlice({
@@ -22,30 +26,43 @@ export const moviesSlice = createSlice({
   initialState,
   reducers: {
     getMovies(state) {
-      state.error = false;
+      state.hasError = false;
       state.isLoading = true;
     },
     getMoviesSuccess(state, {payload}: PayloadAction<IGetMoviesResponse>) {
       state.isLoading = false;
-      state.list = payload.results;
+      state.movies = payload.results;
     },
     getMoviesFailure(state) {
       state.isLoading = false;
-      state.error = true;
+      state.hasError = true;
     },
     setWatchedMovie(state, {payload}: PayloadAction<{movieUrl: string}>) {
-      if (state.watched.some(movieUrl => movieUrl === payload.movieUrl)) {
-        state.watched = state.watched.filter(
-          movieUrl => movieUrl !== payload.movieUrl,
+      if (movieIsWatchedById(payload.movieUrl, state.watchedMovies)) {
+        state.watchedMovies = filterMovieById(
+          payload.movieUrl,
+          state.watchedMovies,
         );
       } else {
-        state.watched = [...state.watched, payload.movieUrl];
+        state.watchedMovies = [...state.watchedMovies, payload.movieUrl];
       }
+    },
+    getWatchedMovies(state) {
+      state.watchedMovies = [];
+    },
+    getWatchedMoviesSuccess(state, {payload}: IGetWatchedMoviesPayload) {
+      state.watchedMovies = payload.watchedMovies;
     },
   },
 });
 
-export const {getMovies, getMoviesFailure, getMoviesSuccess, setWatchedMovie} =
-  moviesSlice.actions;
+export const {
+  getMovies,
+  getMoviesFailure,
+  getMoviesSuccess,
+  setWatchedMovie,
+  getWatchedMovies,
+  getWatchedMoviesSuccess,
+} = moviesSlice.actions;
 
 export default moviesSlice.reducer;
